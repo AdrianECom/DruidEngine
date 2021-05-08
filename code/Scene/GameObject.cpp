@@ -55,7 +55,7 @@ void GameObject::removeComponent(Component *component, ClassId classId) {
 void GameObject::init() {
 	// TRACE();
 
-	mComponentsMap = Memory::allocate<ComponentsMap>();
+	mComponentsMap = Memory::allocate<HashMap<ClassId, List<Component*>*>>();
 	mComponentsMap->init();
 
 	mTransform = Memory::allocate<Transform>();

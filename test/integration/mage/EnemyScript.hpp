@@ -13,19 +13,16 @@ class RigidBody;
 class EnemyScript : public Script {
 
 private:
-	Renderer* mRenderer;
-	RigidBody* mRigidBody;
-	Element mElement;
-	bool mFalling;
-	bool mSlowDown;
-	f32 mSpeed;
+PRIVATE(Renderer, NONE, Renderer*)
+PRIVATE(RigidBody, NONE, RigidBody*)
+	PRIVATE(Element, NONE, Element)
+	PRIVATE(Falling, NONE, bool)
+	PRIVATE(SlowDown, NONE, bool)
+	PRIVATE(Speed, NONE, f32)
 
 public:
 
-	GENERATE_METADATA(EnemyScript);
-
-	EnemyScript();
-	virtual ~EnemyScript() override;
+	GENERATE_METADATA(CONSTRUCTOR, EnemyScript)
 
 	void init() override;
 	void firstStep() override;

@@ -9,7 +9,7 @@ namespace DE {
 
 #define EVENT_DECLARATION_BEGIN(EventClassName) class EventClassName : public Event{ \
 public: \
-	GENERATE_METADATA(EventClassName); \
+	GENERATE_METADATA(NONE, EventClassName) \
 	EventClassName():Event() {}; \
 	~EventClassName() override {}; \
 
@@ -17,27 +17,24 @@ public: \
 
 class Event : public ObjectBase{
 public:
-	GENERATE_METADATA(Event);
+	GENERATE_METADATA(CONSTRUCTOR, Event)
 
-	Event();
-	virtual ~Event() override;
-
-	 f32 mDelayAmount;
-	 TimerDurationType mDelayType;
-	 ObjectBase* mInstigator;
+	PUBLIC(DelayAmount, NONE, f32)
+	PUBLIC(DelayType, NONE, TimerDurationType)
+	PUBLIC(Instigator, NONE, ObjectBase*)
 
 	// NOTE : Override in children!
 	Event& operator= (const Event &event) {
-	    // self-assignment guard
-	    if (this == &event)
-	        return *this;
+	   // self-assignment guard
+	   if (this == &event)
+	       return *this;
 
-	    // do the copy
-	    mInstigator = event.mInstigator; // can handle self-assignment
-	    mDelayType = event.mDelayType; // can handle self-assignment
-	    mDelayAmount = event.mDelayAmount;
+	   // do the copy
+	   mInstigator = event.mInstigator; // can handle self-assignment
+	   mDelayType = event.mDelayType; // can handle self-assignment
+	   mDelayAmount = event.mDelayAmount;
 
-	    return *this;
+	   return *this;
 	}
 };
 
@@ -46,11 +43,11 @@ using EventCallback = std::function<void(const Event*)>;
 template<class E>
 class EventFunctor : public Functor<EventCallback> {
 public:
-	GENERATE_METADATA(EventFunctor);
+	GENERATE_METADATA(NONE, EventFunctor)
 
-	 E* mEvent;
-	 ClassId mEventClassId;
-	 ObjectBase* mEventReceiver;
+	PUBLIC(Event, NONE, E*)
+	PUBLIC(EventClassId, NONE, ClassId)
+	PUBLIC(EventReceiver, NONE, ObjectBase*)
 
 	EventFunctor():Functor<EventCallback>() {
 		mEvent = nullptr;

@@ -12,26 +12,19 @@ class GameObject;
 class ScenesManager: public ObjectBase, public Singleton<ScenesManager> {
 
 private:
-	 List<Scene*>* mScenes;
-	 u32 mCurrentSceneIndex;
+	List<Scene*>* mScenes;
+	PRIVATE(CurrentSceneIndex, NONE, u32)
 	
-	 Scene* mCurrentScene;
-	 bool mSceneHasChanged;
-	 GameObject* mGameObjectController;
+	PRIVATE(CurrentScene, GET, Scene*)
+	PRIVATE(SceneHasChanged, GET, bool)
+	PRIVATE(GameObjectController, GET_SET, GameObject*)
 
 	void internalLoadScene();
 	void addScene(Scene *newScene);
 
 public:
 
-	GENERATE_METADATA(ScenesManager);
-
-	ScenesManager();
-	virtual ~ScenesManager() override;;
-
-	GET(CurrentScene);
-	GET(SceneHasChanged);
-	GET_SET(GameObjectController);
+	GENERATE_METADATA(CONSTRUCTOR, ScenesManager)
 
 	void init();
 	void step();

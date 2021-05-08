@@ -31,10 +31,7 @@ public:
 	bool smButtonJustPressed;
 	f32 smScroll;
 
-	GENERATE_METADATA(Input);
-
-	Input();
-	virtual ~Input() override;
+	GENERATE_METADATA(CONSTRUCTOR, Input)
 
 	void init();
 	void pollEvents();

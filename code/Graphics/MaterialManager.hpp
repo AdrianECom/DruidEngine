@@ -16,10 +16,7 @@ private:
 
 public:
 
-	GENERATE_METADATA(MaterialManager);
-
-	MaterialManager();
-	virtual ~MaterialManager() override;
+	GENERATE_METADATA(CONSTRUCTOR, MaterialManager)
 
 	void init();
 	class Texture* loadTexture(const String &path);

@@ -13,17 +13,14 @@ class Engine: public ObjectBase, public Singleton<Engine> {
 
 private:
 
-	 f32 mFPS;
-	 RenderEngine* mRenderEngine;
-	 PhysicsEngine* mPhysicsEngine;
-	 ScriptEngine* mScriptEngine;
+	PRIVATE(FPS, NONE, f32)
+PRIVATE(RenderEngine, NONE, RenderEngine*)
+PRIVATE(PhysicsEngine, NONE, PhysicsEngine*)
+PRIVATE(ScriptEngine, NONE, ScriptEngine*)
 
 public:
 
-	GENERATE_METADATA(Engine);
-
-	Engine();
-	virtual ~Engine() override;
+	GENERATE_METADATA(CONSTRUCTOR, Engine)
 
 	void init();
 	void initSubsystems();

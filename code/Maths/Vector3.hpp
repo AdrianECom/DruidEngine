@@ -30,10 +30,7 @@ public:
 	// CONSTRUCTORS/DESTRUCTOR
 	//-------------------------------------------------------------------
 
-	GENERATE_METADATA(Vector3);
-
-	Vector3();
-	virtual ~Vector3() override;
+	GENERATE_METADATA(CONSTRUCTOR, Vector3)
 
 	Vector3(f32 x, f32 y, f32 z);
 	Vector3(const Vector3 &other);

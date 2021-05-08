@@ -12,13 +12,13 @@ class PoolAllocator : public LinearAllocator {
 
 private:
 
-	 u32 mBlockSize;
-	 u32 mFullBlockSize;
-	 u32 mAlignment;
-	 u32 mMaxBlocks;
-	 u32 mUsedBlocks;
-	 byte* mFirst;
-	 byte* mLast;
+	PRIVATE(BlockSize, NONE, u32)
+	PRIVATE(FullBlockSize, NONE, u32)
+	PRIVATE(Alignment, NONE, u32)
+	PRIVATE(MaxBlocks, NONE, u32)
+	PRIVATE(UsedBlocks, NONE, u32)
+PRIVATE(First, NONE, byte*)
+PRIVATE(Last, NONE, byte*)
 
 	static const u32 smPtrSize;
 
@@ -35,29 +35,26 @@ private:
 
 public:
 
-	GENERATE_METADATA(PoolAllocator);
-
-	PoolAllocator();
-	virtual ~PoolAllocator() override;
+	GENERATE_METADATA(CONSTRUCTOR, PoolAllocator)
 
 	/*!
-	 \return The count of free blocks.
-	 */
+	\return The count of free blocks.
+	*/
 	u32 getFreeBlocks() const;
 
 	/*!
-	 \brief Constructor.
-	 \param blockSize Size of a single block.
-	 \param numBlocks Number of blocks.
-	 \param alignment Bytes alignment.
-	 */
+	\brief Constructor.
+	\param blockSize Size of a single block.
+	\param numBlocks Number of blocks.
+	\param alignment Bytes alignment.
+	*/
 	void init(u32 blockSize, u32 numBlocks, u32 alignment);
 
 	/*!
-	 \brief Constructor.
-	 \param blockSize Size of a single block.
-	 \param numBlocks Number of blocks.
-	 */
+	\brief Constructor.
+	\param blockSize Size of a single block.
+	\param numBlocks Number of blocks.
+	*/
 	void init(u32 blockSize, u32 numBlocks);
 
 	void initFromMemory(u32 size, byte *mem, u32 numBlocks);
@@ -67,9 +64,9 @@ public:
 	byte* allocate(u32 size, u32 alignment) override;
 
 	/*!
-	 \brief Allocates a single block.
-	 \return Pointer to the new block.
-	 */
+	\brief Allocates a single block.
+	\return Pointer to the new block.
+	*/
 	byte* allocateBlock();
 
 	void free(const byte *pointer) override;

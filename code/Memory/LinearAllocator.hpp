@@ -12,10 +12,7 @@ class LinearAllocator : public Allocator {
 
 public:
 
-	GENERATE_METADATA(LinearAllocator);
-
-	LinearAllocator();
-	virtual ~LinearAllocator() override;
+	GENERATE_METADATA(CONSTRUCTOR, LinearAllocator)
 
 	void init(u32 size) override;
 	byte* allocate(u32 size) override;

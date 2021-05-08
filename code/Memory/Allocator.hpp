@@ -11,7 +11,7 @@ class Allocator : public ObjectBase {
 
 protected:
 
-	 byte* mStart;
+PROTECTED(Start, NONE, byte*)
 
 protected:
 
@@ -29,77 +29,74 @@ protected:
 
 public:
 
-	GENERATE_METADATA(Allocator);
-
-	Allocator();
-	virtual ~Allocator() override;
+	GENERATE_METADATA(CONSTRUCTOR, Allocator)
 
 	// Debug
 
-	 u32 mTotalSize;
-	 u32 mAllocatedSize;
-	 u32 mDebugMaxAllocatedSize;
+	PUBLIC(TotalSize, NONE, u32)
+	PUBLIC(AllocatedSize, NONE, u32)
+	PUBLIC(DebugMaxAllocatedSize, NONE, u32)
 
 	/*!
-	 \return True if space is enough.
-	 \param size Size you want to check.
-	 */
+	\return True if space is enough.
+	\param size Size you want to check.
+	*/
 	bool hasSpace(u32 size) const;
 
 	/*!
-	 \brief Constructor.
-	 \param size Amount of memory you want to allocate.
-	 */
+	\brief Constructor.
+	\param size Amount of memory you want to allocate.
+	*/
 	virtual void init(u32 size);
 
 	/*!
-	 \brief Constructor.
-	 \param size Amount of memory you want to allocate.
-	 \param mem Pointer to pre-allocated memory chunk.
-	 */
+	\brief Constructor.
+	\param size Amount of memory you want to allocate.
+	\param mem Pointer to pre-allocated memory chunk.
+	*/
 	virtual void initFromMemory(u32 size, byte *mem);
 
 	/*!
-	 \brief Allocates memory.
-	 \param size Amount of memory you want to allocate.
-	 \return Pointer to memory chunk.
-	 */
+	\brief Allocates memory.
+	\param size Amount of memory you want to allocate.
+	\return Pointer to memory chunk.
+	*/
 	virtual byte* allocate(u32 size) = 0;
 
 	/*!
-	 \brief Allocates memory.
-	 \param size Amount of memory you want to allocate.
-	 \param alignment Bytes alignment.
-	 \return Pointer to memory chunk.
-	 */
+	\brief Allocates memory.
+	\param size Amount of memory you want to allocate.
+	\param alignment Bytes alignment.
+	\return Pointer to memory chunk.
+	*/
 	virtual byte* allocate(u32 size, u32 alignment) = 0;
 
 	/*!
-	 \brief Frees memory.
-	 \param pointer Pointer to memory.
-	 */
+	\brief Frees memory.
+	\param pointer Pointer to memory.
+	*/
 	virtual void free(const byte *pointer) = 0;
 
 	/*!
-	 \brief Cleaning step. Used by FreeListAllocator to remove invalid blocks.
-	 */
+	\brief Cleaning step. Used by FreeListAllocator to remove invalid blocks.
+	*/
 	virtual void flush();
 
 	virtual void reset();
 
 	/*!
-	 \brief Frees aligned memory.
-	 */
+	\brief Frees aligned memory.
+	*/
 	virtual void terminate();
 
 	/*!
-	 \brief Constructs objects. It is used like "new" keyword.
-	 Allocate an object of T class, using the allocator.
+	\brief Constructs objects. It is used like "new" keyword.
+	Allocate an object of T class, using the allocator.
 
-	 \tparam T ObjectBase.
-	 \param allocator Allocator used to allocate memory.
-	 \param alignment Bytes alignment.
-	 */
+	\tparam T ObjectBase.
+	\param allocator Allocator used to allocate memory.
+	\param alignment Bytes alignment.
+	*/
 	template<class T>
 	static T* internalAllocate(Allocator *allocator, u32 alignment) {
 		T* object = new (allocator->allocate(sizeof(T), alignment)) T;
@@ -107,12 +104,12 @@ public:
 	};
 
 	/*!
-	 \brief Constructs objects. It is used like "new" keyword.
-	 Allocate an object of T class, using the allocator.
+	\brief Constructs objects. It is used like "new" keyword.
+	Allocate an object of T class, using the allocator.
 
-	 \tparam T ObjectBase
-	 \param allocator Allocator used to allocate memory.
-	 */
+	\tparam T ObjectBase
+	\param allocator Allocator used to allocate memory.
+	*/
 	template<class T>
 	static T* internalAllocate(Allocator *allocator) {
 		T* object = new (allocator->allocate(sizeof(T))) T;
@@ -120,10 +117,10 @@ public:
 	};
 
 	/*!
-	 \brief Destroys objects. It is used like "delete" keyword.
-	 Deallocate data, using the allocator.
-	 \param allocator Allocator used to deallocate memory.
-	 */
+	\brief Destroys objects. It is used like "delete" keyword.
+	Deallocate data, using the allocator.
+	\param allocator Allocator used to deallocate memory.
+	*/
 	static void internalFree(ObjectBase *object, Allocator *allocator) {
 		if (object != nullptr) {
 			object->dynamicDestructor(); // ~T(); 

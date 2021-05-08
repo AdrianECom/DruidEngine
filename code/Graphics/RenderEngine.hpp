@@ -27,34 +27,33 @@ private:
 
 	class LayerData : public ObjectBase {
 	public:
-		GENERATE_METADATA(LayerData);
+		GENERATE_METADATA(CONSTRUCTOR, LayerData)
 
-	LayerData();
-	virtual ~LayerData() override;
-
-		 bool mSorted;
-		 u32 mDynamicObjectsCount; // Non static objects count
-		 u32 mSortCounter;
-		 bool mVisible;
+		PUBLIC(Sorted, NONE, bool)
+		PUBLIC(DynamicObjectsCount, NONE, u32) // Non static objects count
+		PUBLIC(SortCounter, NONE, u32)
+		PUBLIC(Visible, NONE, bool)
 	};
 
-	 BatchesMap* mBatchesMap;
-	 BatchesMap* mBatchesMapScreenSpace;
+	PRIVATE(BatchesMap, NONE,BatchesMap*)
+	PRIVATE(BatchesMapScreenSpace, NONE,BatchesMap*)
 
-	 LineRenderer* mLineRenderer;
-	 LineRenderer* mLineRendererScreenSpace;
+	PRIVATE(LineRenderer, NONE,LineRenderer*)
+	PRIVATE(LineRendererScreenSpace, NONE,LineRenderer*)
 
-	 Camera* mCamera;
-	 bool mCameraDirtyTranslation;
+	PRIVATE(Camera, GET_SET,Camera*)
+	PRIVATE(CameraDirtyTranslation, GET, bool)
 	
-	 HashMap<u32, LayerData*>* mLayersData;
-	 u32 mMaxLayers;
-	 u32 mMaxLayersUsed;
+	//HashMap<u32, LayerData*>* mLayersData;
+	//using hp = HashMap<u32, LayerData*>;
+	PRIVATE(LayersData, GET_SET, HashMap<u32, LayerData*>*);
+	PRIVATE(MaxLayers, GET, u32)
+	PRIVATE(MaxLayersUsed, NONE, u32)
 
-	 f32 mMinChunkDrawDistance;
-	 Array<Chunk*>* mChunks;
+	PRIVATE(MinChunkDrawDistance, GET, f32)
+	PRIVATE(Chunks, NONE, Array<Chunk*>*)
 
-	 List<Renderer*>* mRenderersToFree;
+	PRIVATE(RenderersToFree, NONE, List<Renderer*>*)
 
 	void checkChunks();
 	void freeRenderersPendingtoFree();
@@ -63,19 +62,7 @@ private:
 
 public:
 
-	GENERATE_METADATA(RenderEngine);
-
-	RenderEngine();
-	virtual ~RenderEngine() override;;
-
-	GET_SET(Camera);
-
-	GET(CameraDirtyTranslation);
-
-	GET(LayersData);
-	GET(MaxLayers);
-
-	GET(MinChunkDrawDistance);
+	GENERATE_METADATA(CONSTRUCTOR, RenderEngine)
 
 	void init(f32 sceneSize);
 	void step(); // render

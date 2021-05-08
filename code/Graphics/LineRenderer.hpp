@@ -9,25 +9,24 @@ template<class T> class Array;
 
 class LineRenderer : public ObjectBase {
 private:
-		 Shader* mShaderLine;
+PRIVATE(ShaderLine, NONE, Shader*)
 		
-		 u32 mMaxShapes;
-		 u32 mShapesCounter;
+		PRIVATE(MaxShapes, NONE, u32)
+		PRIVATE(ShapesCounter, NONE, u32)
 
-		 u32 mVAO;
-		 u32 mVBOPosition;
-		 u32 mEBO;
-		 u32 mPositionBufferIndex;
-		 Array<f32>* mPositionBuffer;
-		 Array<u32>* mIndicesBuffer;
+		PRIVATE(VAO, NONE, u32)
+		PRIVATE(VBOPosition, NONE, u32)
+		PRIVATE(EBO, NONE, u32)
+		PRIVATE(PositionBufferIndex, NONE, u32)
+		Array<f32>* mPositionBuffer;
+		Array<u32>* mIndicesBuffer;
 
-		 f32 mSize;
+		PRIVATE(Size, NONE, f32)
 public:
-		GENERATE_METADATA(LineRenderer);
+		GENERATE_METADATA(CONSTRUCTOR, LineRenderer)
 
-	LineRenderer();
-	virtual ~LineRenderer() override;
-		 bool mIsAffectedByProjection;
+	
+		PUBLIC(IsAffectedByProjection, NONE, bool)
 		
 		void init();
 		void add(const Vector3 &start, const Vector3 &end);

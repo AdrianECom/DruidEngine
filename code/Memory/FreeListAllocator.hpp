@@ -38,10 +38,10 @@ private:
 		}
 	};
 
-	LinearAllocator mLinearAllocator; // TODO: change for Memory::allocate()
+	PRIVATE(LinearAllocator, NONE, LinearAllocator) // TODO: change for Memory::allocate()
 
-	Block* mFirstBlockUsed;
-	Block* mFirstBlockFree;
+PRIVATE(FirstBlockUsed, NONE, Block*)
+PRIVATE(FirstBlockFree, NONE, Block*)
 
 	void moveToUsedList(Block *block);
 	void moveToFreeList(Block *block);
@@ -51,10 +51,7 @@ private:
 
 public:
 
-	GENERATE_METADATA(FreeListAllocator);
-
-	FreeListAllocator();
-	virtual ~FreeListAllocator() override;
+	GENERATE_METADATA(CONSTRUCTOR, FreeListAllocator)
 
 	virtual void init(u32 size) override;
 	virtual byte* allocate(u32 size) override;

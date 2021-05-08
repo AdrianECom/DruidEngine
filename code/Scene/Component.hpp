@@ -11,25 +11,17 @@ class Component : public ObjectBase {
 
 private:
 
-	 bool mIsActive;
-	 bool mIsStatic;
+	PRIVATE(IsActive, NONE, bool)
+	PRIVATE(IsStatic, NONE, bool)
 
-	 GameObject* mGameObject;
-	 bool mAlreadyAddedToEngine;
-	 bool mIsPendingToBeDestroyed;
-	 bool mIsDestroyed;
+	PRIVATE(GameObject, GET_SET, GameObject*)
+	PRIVATE(AlreadyAddedToEngine, GET_SET, bool)
+	PRIVATE(IsPendingToBeDestroyed, GET, bool)
+	PRIVATE(IsDestroyed, GET, bool)
 
 public:
 
-	GENERATE_METADATA(Component);
-
-	Component();
-	virtual ~Component() override;;
-
-	GET_SET(GameObject);
-	GET_SET(AlreadyAddedToEngine);
-	GET(IsPendingToBeDestroyed);
-	GET(IsDestroyed);
+	GENERATE_METADATA(CONSTRUCTOR, Component)
 
 	virtual void init() = 0;
 

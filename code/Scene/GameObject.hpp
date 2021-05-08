@@ -18,36 +18,25 @@ EVENT_DECLARATION_END(EventOnDestroy)
 class GameObject : public ObjectBase {
 private:
 
-	using ComponentsMap = HashMap<ClassId, List<Component*>*>;
-	ComponentsMap* mComponentsMap;
+	PRIVATE(ComponentsMap, NONE, HashMap<ClassId, List<Component*>*>*)
+	PRIVATE(IsActive, NONE, bool)
+
+	PRIVATE(Scene, GET_SET, Scene*)
+	PRIVATE(IsStatic, GET_SET, bool)
+	PRIVATE(Transform, GET, Transform*)
+	PRIVATE(Tag, GET_SET, String)
+	PRIVATE(IsPendingToBeDestroyed, GET, bool)
+	PRIVATE(IsDestroyed, GET, bool)
+	PRIVATE(ShouldPersist, GET_SET, bool)
+
+private:
 
 	List<Component*>* getComponents(ClassId classId);
 	Component* getFirstComponent(ClassId classId);
 
-	 bool mIsActive;
-
-	 Scene* mScene;
-	 bool mIsStatic;
-	 Transform* mTransform;
-	 String mTag;
-	 bool mIsPendingToBeDestroyed;
-	 bool mIsDestroyed;
-	 bool mShouldPersist;
-
 public:
 
-	GENERATE_METADATA(GameObject);
-
-	GameObject();
-	virtual ~GameObject() override;;
-
-	GET_SET(Scene);
-	GET_SET(IsStatic);
-	GET(Transform);
-	GET_SET(Tag);
-	GET(IsPendingToBeDestroyed);
-	GET(IsDestroyed);
-	GET_SET(ShouldPersist);
+	GENERATE_METADATA(CONSTRUCTOR, GameObject)
 
 	virtual void init();
 

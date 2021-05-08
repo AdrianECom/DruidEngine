@@ -17,10 +17,7 @@ public:
 		CONTACT_STATUS_ENTER, CONTACT_STATUS_UPDATE, CONTACT_STATUS_EXIT, CONTACT_DESTROYED_COLLIDER
 	};
 
-	GENERATE_METADATA(Contact);
-
-	Contact();
-	virtual ~Contact() override;
+	GENERATE_METADATA(CONSTRUCTOR, Contact)
 
 	Collider* colliderA;
 	Collider* colliderB;
@@ -48,10 +45,7 @@ private:
 
 public:
 
-	GENERATE_METADATA(ContactsManager);
-
-	ContactsManager();
-	virtual ~ContactsManager() override;
+	GENERATE_METADATA(CONSTRUCTOR, ContactsManager)
 
 	// TODO : ID should be just the pointer or hash
 	void init();

@@ -12,21 +12,18 @@ class StackAllocator : public LinearAllocator {
 
 private:
 
-	 byte* mTop;
+PRIVATE(Top, NONE, byte*)
 
 	static const u32 smHeaderSize;
 	void storeHeader(const byte *address, u32 size);
 
 public:
 
-	GENERATE_METADATA(StackAllocator);
-
-	StackAllocator();
-	virtual ~StackAllocator() override;
+	GENERATE_METADATA(CONSTRUCTOR, StackAllocator)
 
 	/*!
-	 \return Pointer to the top of the stack.
-	 */
+	\return Pointer to the top of the stack.
+	*/
 	byte* getTop();
 
 	void init(u32 size) override;
@@ -36,8 +33,8 @@ public:
 	virtual void free(const byte *pointer) override;
 
 	/*!
-	 \brief Free the top of the stack.
-	 */
+	\brief Free the top of the stack.
+	*/
 	void free();
 
 	void reset() override;

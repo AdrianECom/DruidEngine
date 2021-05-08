@@ -12,9 +12,9 @@ class Matrix4;
 
 class Shader : public ObjectBase {
 private:
-	 u32 mVertexShader;
-	 u32 mFragmentShader;
-	 u32 mProgram;
+	PRIVATE(VertexShader, NONE, u32)
+	PRIVATE(FragmentShader, NONE, u32)
+	PRIVATE(Program, NONE, u32)
 
 	static Shader* msShaderDefault;
 	static Shader* msShaderDebug;
@@ -23,10 +23,7 @@ private:
 
 public:
 
-	GENERATE_METADATA(Shader);
-
-	Shader();
-	virtual ~Shader() override;
+	GENERATE_METADATA(CONSTRUCTOR, Shader)
 
 	static Shader* getDefaultShader();
 	static Shader* getDebugShader();

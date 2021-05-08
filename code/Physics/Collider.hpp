@@ -21,44 +21,29 @@ enum class ColliderShape {
 class Collider : public Component {
 private:
 
-	 Array<Vector2>* mBoxVertices;
+	PRIVATE(BoxVertices, NONE, Array<Vector2>*)
 
-	 f32 mHalfWidth;
-	 f32 mHalfHeight;
-	 ColliderStatus mStatus;
+	PRIVATE(HalfWidth, NONE, f32)
+	PRIVATE(HalfHeight, NONE, f32)
+	PRIVATE(Status, NONE, ColliderStatus)
 	
 	static f32 msDepthEpsilon;
 
-	 f32 mRadius;
-	 f32 mHeight;
-	 f32 mWidth;
-	 Vector3 mPositionOffset;
-	 RigidBody* mRigidBody;
-	 f32 mCollisionLayer;
-	 ColliderShape mShape;
-	 bool mIsSolid;
-	 Contact* mLastContact;
-	 bool mIsPenetrated;
-	 bool mHasSizeChanged;
+	PRIVATE(Radius, GET, f32)
+	PRIVATE(Height, GET, f32)
+	PRIVATE(Width, GET, f32)
+	PRIVATE(PositionOffset, GET_SET, Vector3)
+	PRIVATE(RigidBody, GET_SET, RigidBody*)
+	PRIVATE(CollisionLayer, GET_SET, f32)
+	PRIVATE(Shape, GET_SET, ColliderShape)
+	PRIVATE(IsSolid, GET_SET, bool)
+	PRIVATE(LastContact, GET, Contact*)
+	PRIVATE(IsPenetrated, GET, bool)
+	PRIVATE(HasSizeChanged, GET, bool)
 
 public:
 
-	GENERATE_METADATA(Collider);
-
-	Collider();
-	virtual ~Collider() override;;
-
-	GET(Radius);
-	GET(Height);
-	GET(Width);
-	GET_SET(PositionOffset);
-	GET_SET(RigidBody);
-	GET_SET(CollisionLayer);
-	GET_SET(Shape);
-	GET_SET(IsSolid);
-	GET(LastContact);
-	GET(IsPenetrated);
-	GET(HasSizeChanged);
+	GENERATE_METADATA(CONSTRUCTOR, Collider)
 
 	void init() override;
 

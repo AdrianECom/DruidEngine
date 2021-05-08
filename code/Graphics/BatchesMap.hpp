@@ -17,10 +17,7 @@ private:
 
 public:
 	
-	GENERATE_METADATA(BatchesMap);
-
-	BatchesMap();
-	virtual ~BatchesMap() override;
+	GENERATE_METADATA(CONSTRUCTOR, BatchesMap)
 	void init();
 	u32 render(u32 layer);
 	void addRenderer(Renderer *renderer);

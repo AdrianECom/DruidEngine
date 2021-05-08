@@ -8,10 +8,7 @@ class UITextEditable : public UIText {
 
 public:
 
-	GENERATE_METADATA(UITextEditable);
-
-	UITextEditable();
-	virtual ~UITextEditable() override;
+	GENERATE_METADATA(CONSTRUCTOR, UITextEditable)
 
 	virtual void init();
 	virtual void onFocusLost();

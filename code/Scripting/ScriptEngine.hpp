@@ -12,14 +12,11 @@ class Iterator;
 class ScriptEngine: public ObjectBase, public Singleton<ScriptEngine> {
 private:
 
-	 List<Script*>* mScripts;
-	 Script* mController;
+	List<Script*>* mScripts;
+PRIVATE(Controller, NONE, Script*)
 	void internalRemoveScript(const Iterator *it);
 
-public:GENERATE_METADATA(ScriptEngine);
-
-	ScriptEngine();
-	virtual ~ScriptEngine() override;
+public:GENERATE_METADATA(CONSTRUCTOR, ScriptEngine)
 
 	void init();
 	void addScript(Script *newScript);

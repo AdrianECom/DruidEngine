@@ -3,6 +3,8 @@
 #include "Core/BasicTypes.hpp"
 #include <type_traits>
 
+#define NONE(...)
+
 // --------------------------------------------------------
 // CLASS - METADATA MACROS
 // --------------------------------------------------------
@@ -31,12 +33,19 @@
 #define GENERATE_DYNAMIC_DESTRUCTOR_VIRTUAL(...)\
 	virtual void dynamicDestructor() override { this->~__VA_ARGS__(); };
 
-#define GENERATE_METADATA(...)\
+#define GENERATE_METADATA(ConstructorsMacro, ...)\
+	ConstructorsMacro(__VA_ARGS__);\
 	GENERATE_NAME_STATIC(__VA_ARGS__);\
 	GENERATE_NAME_VIRTUAL(__VA_ARGS__);\
 	GENERATE_ID_STATIC(__VA_ARGS__);\
 	GENERATE_ID_VIRTUAL(__VA_ARGS__);\
 	GENERATE_DYNAMIC_DESTRUCTOR_VIRTUAL(__VA_ARGS__); 
+
+// Constructors
+
+#define CONSTRUCTOR(...) __VA_ARGS__(); virtual ~__VA_ARGS__() override;
+
+// Instanceable
 
 #define INSTANCEABLE_BY_CLASSNAME(...)\
 	Memory::registerClassName<__VA_ARGS__>(__VA_ARGS__::getClassNameStatic());
@@ -45,20 +54,19 @@
 // MEMBERS, GETTERS AND SETTERS
 // --------------------------------------------------------
 
-#define IS_POINTER(Class) std::is_pointer<std::remove_reference<Class>::type>::value
-#define IS_ARITHMETIC(Class) std::is_arithmetic<std::remove_reference<Class>::type>::value
-
-#define MEMBER_BASE(BaseName, ...) __VA_ARGS__ m ## BaseName = {};
+#define REMOVE_REF(Class) std::remove_reference<Class>::type
+#define IS_POINTER(Class) std::is_pointer<REMOVE_REF(Class)>::value
+#define IS_ARITHMETIC(Class) std::is_arithmetic<REMOVE_REF(Class)>::value
 
 #define COND_TYPE(Bool, T1, T2) std::conditional<Bool, T1, T2>::type
 
 #define GETTER_TYPE(Var)\
 	COND_TYPE(\
 		IS_POINTER(decltype(Var)),\
-		std::add_const<std::remove_reference<decltype(Var)>::type>::type,\
+		std::add_const<REMOVE_REF(decltype(Var))>::type,\
 		COND_TYPE(\
 			IS_ARITHMETIC(decltype(Var)),\
-			std::remove_reference<decltype(Var)>::type,\
+			REMOVE_REF(decltype(Var)),\
 			std::add_const<decltype(Var)>::type\
 		)\
 	)
@@ -72,6 +80,16 @@
 	void set ## BaseName (SETTER_TYPE(m ## BaseName) new ## BaseName){ m ## BaseName = new ## BaseName; };
 
 #define GET_SET(BaseName) GET(BaseName) SET(BaseName)
+
+#define MEMBER_BASE(BaseName, ...) __VA_ARGS__ m ## BaseName = {};
+
+#define MEMBER(BaseName, AccessorMacroName, Visibility, ...)\
+	Visibility:\
+	MEMBER_BASE(BaseName, __VA_ARGS__) public: AccessorMacroName(BaseName) Visibility:
+
+#define PUBLIC(BaseName, AccessorMacroName, ...) MEMBER(BaseName, AccessorMacroName, public, __VA_ARGS__)
+#define PROTECTED(BaseName, AccessorMacroName, ...) MEMBER(BaseName, AccessorMacroName, protected, __VA_ARGS__)
+#define PRIVATE(BaseName, AccessorMacroName, ...) MEMBER(BaseName, AccessorMacroName, private, __VA_ARGS__)
 
 // --------------------------------------------------------
 // FOR LOOPS

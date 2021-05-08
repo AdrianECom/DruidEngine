@@ -27,10 +27,7 @@ public:
 	// CONSTRUCTORS/DESTRUCTOR
 	//-------------------------------------------------------------------
 
-	GENERATE_METADATA(Quaternion);
-
-	Quaternion();
-	virtual ~Quaternion() override;
+	GENERATE_METADATA(CONSTRUCTOR, Quaternion)
 
 	Quaternion(f32 x, f32 y, f32 z, f32 w);
 	Quaternion(const Vector3 &v, f32 w);
@@ -78,11 +75,11 @@ public:
 	//-------------------------------------------------------------------
 
 	/*
-	 * & -> it's a reference, not a full copy.
-	 * const Quaternion& -> it's a constant reference.
-	 * operator=(...) const -> the method promises not to change *this. Non-member
-	 * functions can not have constant qualification.
-	 */
+	* & -> it's a reference, not a full copy.
+	* const Quaternion& -> it's a constant reference.
+	* operator=(...) const -> the method promises not to change *this. Non-member
+	* functions can not have constant qualification.
+	*/
 
 	Quaternion& operator=(const Quaternion &rhs) {
 		if (this == &rhs)

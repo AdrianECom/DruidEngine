@@ -15,22 +15,17 @@ class Iterator;
 class PhysicsEngine: public ObjectBase, public Singleton<PhysicsEngine> {
 private:
 
-	 List<RigidBody*>* mRigidBodies;
-	 List<RigidBody*>* mRigidBodiesToFree;
-	 QuadTree* mQuadTree;
+	PRIVATE(RigidBodies, NONE, List<RigidBody*>*)
+	PRIVATE(RigidBodiesToFree, NONE, List<RigidBody*>*)
+	PRIVATE(QuadTree, NONE, QuadTree*);
 
-	 bool mDebugColliders;
+	PRIVATE(DebugColliders, GET_SET, bool)
 
 	void internalRemoveRigidBody(const Iterator *it);
 
 public:
 
-	GENERATE_METADATA(PhysicsEngine);
-
-	PhysicsEngine();
-	virtual ~PhysicsEngine() override;;
-
-	GET_SET(DebugColliders);
+	GENERATE_METADATA(CONSTRUCTOR, PhysicsEngine)
 
 	void addRigidBody(RigidBody *rigidBody);
 	void addCollider(RigidBody *rigidBody, Collider *collider);

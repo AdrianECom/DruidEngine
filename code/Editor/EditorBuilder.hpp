@@ -23,10 +23,7 @@ class EditorBuilder : public ObjectBase, public Singleton<EditorBuilder>{
 
 public:
 
-	GENERATE_METADATA(EditorBuilder);
-
-	EditorBuilder();
-	virtual ~EditorBuilder() override;
+	GENERATE_METADATA(CONSTRUCTOR, EditorBuilder)
 
 	u32 mUILayer = 3;
 

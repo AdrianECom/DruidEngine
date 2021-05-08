@@ -17,49 +17,31 @@ namespace DE {
 class Renderer : public Component {
 private:
 
-	 HashMap<String, Animation*>* mAnimations;
-	 Matrix4 mRenderereModelMatrix;
-	 bool mPositionOffsetDirty;
-	 bool mForceRecalculateVertices;
-	 Array<Vector2>* mVertices;
-	 bool mIsAffectedByProjection;
+	PRIVATE(Animations, NONE, HashMap<String, Animation*>*)
+	PRIVATE(RenderereModelMatrix, NONE, Matrix4)
+	PRIVATE(PositionOffsetDirty, NONE, bool)
+	PRIVATE(ForceRecalculateVertices, NONE, bool)
+	PRIVATE(Vertices, NONE, Array<Vector2>*)
+	PRIVATE(IsAffectedByProjection, NONE, bool)
 
-	 Animation* mCurrentAnimation;
-	 Array<f32>* mColor;
-	 Vector3 mPositionOffset;
-	 Vector2 mRegionPosition;
-	 Vector2 mRegionSize;
-	 Mesh* mMesh;
-	 Material* mMaterial;
-	 bool mIsInvertAxis;
-	 bool mIsLineMode;
-	 u32 mLayer;
-	 f32 mRenderDistance;
-	 bool mIsOutOfCamera;
-	 bool mIsAlreadyInBatch;
-	 Chunk* mChunk;
+	PRIVATE(CurrentAnimation, GET, Animation*)
+	PRIVATE(Color, GET, Array<f32>*)
+	PRIVATE(PositionOffset, GET, Vector3)
+	PRIVATE(RegionPosition, GET, Vector2)
+	PRIVATE(RegionSize, GET, Vector2)
+	PRIVATE(Mesh, GET_SET, Mesh*)
+	PRIVATE(Material, GET_SET, Material*)
+	PRIVATE(IsInvertAxis, GET_SET, bool)
+	PRIVATE(IsLineMode, GET_SET, bool)
+	PRIVATE(Layer, GET_SET, u32)
+	PRIVATE(RenderDistance, GET_SET, f32)
+	PRIVATE(IsOutOfCamera, GET_SET, bool)
+	PRIVATE(IsAlreadyInBatch, GET_SET, bool)
+	PRIVATE(Chunk, GET_SET, Chunk*)
 
 public:
 
-	GET(CurrentAnimation);
-	GET(Color);
-	GET(PositionOffset);
-	GET(RegionPosition);
-	GET(RegionSize);
-	GET_SET(Mesh);
-	GET_SET(Material);
-	GET_SET(IsInvertAxis);
-	GET_SET(IsLineMode);
-	GET_SET(Layer);
-	GET_SET(RenderDistance);
-	GET_SET(IsOutOfCamera);
-	GET_SET(IsAlreadyInBatch);
-	GET_SET(Chunk);
-
-	GENERATE_METADATA(Renderer);
-
-	Renderer();
-	virtual ~Renderer() override;
+	GENERATE_METADATA(CONSTRUCTOR, Renderer)
 
 	void init() override;
 	void setAnimation(StringRef name);

@@ -13,28 +13,20 @@ class BaseContainer : public ObjectBase {
 
 protected:
 
-	 u32 mLength;
-	 u32 mElementSize;
-	 u32 mAlignment;
-	 Allocator* mAllocator;
+	PROTECTED(Length, GET, u32);
+	PROTECTED(ElementSize, GET, u32);
+	PROTECTED(Alignment, GET, u32);
+	PROTECTED(Allocator, GET_SET, Allocator*);
 
 	void init(u32 length, u32 elementSize, u32 alignment);
 
 public:
 
-	GENERATE_METADATA(BaseContainer);
-
-	BaseContainer();
-	virtual ~BaseContainer() override;
-
-	GET(Length);
-	GET(ElementSize);
-	GET(Alignment);
-	GET_SET(Allocator);
+	GENERATE_METADATA(CONSTRUCTOR, BaseContainer)
 
 	/*!
-	 \brief Clear the container.
-	 */
+	\brief Clear the container.
+	*/
 	virtual void clear();
 };
 }

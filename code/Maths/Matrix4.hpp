@@ -23,10 +23,7 @@ private:
 
 public:
 
-	GENERATE_METADATA(Matrix4);
-
-	Matrix4();
-	virtual ~Matrix4() override;
+	GENERATE_METADATA(CONSTRUCTOR, Matrix4)
 
 	static const Matrix4& getIdentity();
 

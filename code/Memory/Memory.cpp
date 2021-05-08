@@ -5,7 +5,7 @@
 
 namespace DE {
 
-std::map<String, u32> Memory::memoryMapCounter;
+std::map<String, i32> Memory::memoryMapCounter;
 
 std::map<String, std::function<ObjectBase*()>> Memory::classNamesMap;
 
@@ -63,7 +63,7 @@ void Memory::free() {
 
 	smGlobal.terminate();
 
-    std::map<String, u32>::iterator it = memoryMapCounter.begin();
+    std::map<String, i32>::iterator it = memoryMapCounter.begin();
     while(it != memoryMapCounter.end())
     {
         std::cout<< (it->second == 0 ? "OK" : "!!") << " " << it->second<<" :: "<<it->first<<std::endl;

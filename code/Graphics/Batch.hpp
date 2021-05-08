@@ -12,36 +12,36 @@ class Batch: public ObjectBase {
 
 private:
 
-	 class RenderEngine* mRenderEngine;
-	 HashMap<u32, List<class Renderer*>*>* mRenderers;
-	 class Material* mMaterial;
-	 const class Mesh* mMesh;
+	class RenderEngine* mRenderEngine;
+	HashMap<u32, List<class Renderer*>*>* mRenderers;
+	class Material* mMaterial;
+	const class Mesh* mMesh;
 
-	 u32 mVBOPosition; // TODO: change u32 for GLuint
-	 u32 mEBO;
-	 u32 mVBOTexture;
-	 u32 mVBOColor;
-	 u32 mVBONormal;
-	 u32 mVAO;
+	PRIVATE(VBOPosition, NONE, u32) // TODO: change u32 for GLuint
+	PRIVATE(EBO, NONE, u32)
+	PRIVATE(VBOTexture, NONE, u32)
+	PRIVATE(VBOColor, NONE, u32)
+	PRIVATE(VBONormal, NONE, u32)
+	PRIVATE(VAO, NONE, u32)
 
-	 u32 mMaxVertexBufferSize;
-	 u32 mMaxMeshes;
-	 u32 mMeshesIndex;
-	 u32 mVerticesPerMesh;
-	 u32 mVertexPositionSize;
-	 u32 mVertexTextureSize;
-	 u32 mVertexColorSize;
-	 u32 mFacesSize;
-	 u32 mPositionBufferIndex;
-	 u32 mTextureBufferIndex;
-	 u32 mColorBufferIndex;
-	 Array<f32>* mPositionBuffer;
-	 Array<f32>* mTextureBuffer;
-	 Array<f32>* mColorBuffer;
-	 Array<u32>* mIndicesBuffer;
+	PRIVATE(MaxVertexBufferSize, NONE, u32)
+	PRIVATE(MaxMeshes, NONE, u32)
+	PRIVATE(MeshesIndex, NONE, u32)
+	PRIVATE(VerticesPerMesh, NONE, u32)
+	PRIVATE(VertexPositionSize, NONE, u32)
+	PRIVATE(VertexTextureSize, NONE, u32)
+	PRIVATE(VertexColorSize, NONE, u32)
+	PRIVATE(FacesSize, NONE, u32)
+	PRIVATE(PositionBufferIndex, NONE, u32)
+	PRIVATE(TextureBufferIndex, NONE, u32)
+	PRIVATE(ColorBufferIndex, NONE, u32)
+	Array<f32>* mPositionBuffer;
+	Array<f32>* mTextureBuffer;
+	Array<f32>* mColorBuffer;
+	Array<u32>* mIndicesBuffer;
 
-	 bool mBinded;
-	 u32 mTextureId;
+	PRIVATE(Binded, NONE, bool)
+	PRIVATE(TextureId, NONE, u32)
 
 	void addToVertexBuffer(class Renderer* renderer);
 	void clearVertexBuffer();
@@ -62,10 +62,7 @@ private:
 
 public:
 
-	GENERATE_METADATA(Batch);
-
-	Batch();
-	virtual ~Batch() override;;
+	GENERATE_METADATA(CONSTRUCTOR, Batch)
 
 	SET(Material);
 	SET(Mesh);

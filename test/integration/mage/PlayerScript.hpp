@@ -14,24 +14,21 @@ class RigidBody;
 class PlayerScript : public Script {
 
 private:
-	Renderer* mRenderer;
-	RigidBody* mRigidBody;
-	f32 mAttackAnimTime;
-	f32 mAttackAnimTimeCount;
-	bool mIsAttackPlaying;
+PRIVATE(Renderer, NONE, Renderer*)
+PRIVATE(RigidBody, NONE, RigidBody*)
+	PRIVATE(AttackAnimTime, NONE, f32)
+	PRIVATE(AttackAnimTimeCount, NONE, f32)
+	PRIVATE(IsAttackPlaying, NONE, bool)
 
-	GameObject* mBook;
-	Vector4 mBookColor;
-	Element mElement;
-	u32 mMana;
-	bool mManaChanged;
+PRIVATE(Book, NONE, GameObject*)
+	PRIVATE(BookColor, NONE, Vector4)
+	PRIVATE(Element, NONE, Element)
+	PRIVATE(Mana, NONE, u32)
+	PRIVATE(ManaChanged, NONE, bool)
 
 public:
 
-	GENERATE_METADATA(PlayerScript);
-
-	PlayerScript();
-	virtual ~PlayerScript() override;
+	GENERATE_METADATA(CONSTRUCTOR, PlayerScript)
 
 	void init() override;
 	void firstStep() override;

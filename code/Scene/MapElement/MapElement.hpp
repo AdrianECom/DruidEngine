@@ -11,52 +11,49 @@ namespace DE
     
     class MapElement  : public GameObject {
     public:
-        GENERATE_METADATA(MapElement);
+        GENERATE_METADATA(CONSTRUCTOR, MapElement)
 
-        MapElement();
-        virtual ~MapElement() override;
+       
         virtual void initFromData(const MapElementData* data);
         static MapElement *create(const MapElementData* data);
     };
 
     class MapElementData  : public ObjectBase {
     public:
-        GENERATE_METADATA(MapElementData)
+        GENERATE_METADATA(NONE, MapElementData)
 
-         String mMapElementClassName;
-         Vector3 mPosition;
-         Vector2 mSize;
-         Material* mMaterial;
-         u32 mLayer;
-         Vector2 mMaterialRegionPosition;
-         Vector2 mMaterialRegionSize;
+        PUBLIC(MapElementClassName, NONE, String)
+        PUBLIC(Position, NONE, Vector3)
+        PUBLIC(Size, NONE, Vector2)
+        PUBLIC(Material, NONE, Material*)
+        PUBLIC(Layer, NONE, u32)
+        PUBLIC(MaterialRegionPosition, NONE, Vector2)
+        PUBLIC(MaterialRegionSize, NONE, Vector2)
 
         MapElementData() { mMapElementClassName = MapElement::getClassNameStatic(); }
     };
 
     class MapElement_Tile  : public MapElement {
     public:
-        GENERATE_METADATA(MapElement_Tile);
-        MapElement_Tile();
-        virtual ~MapElement_Tile() override;
+        GENERATE_METADATA(CONSTRUCTOR, MapElement_Tile)
+       
     };
 
     class MapElementData_Tile  : public MapElementData {
     public:
-        GENERATE_METADATA(MapElementData_Tile)
+        GENERATE_METADATA(NONE, MapElementData_Tile)
         MapElementData_Tile() { mMapElementClassName = MapElement_Tile::getClassNameStatic(); }
     };
 
     class MapElement_ActionPoint  : public MapElement {
     public:
-        GENERATE_METADATA(MapElement_ActionPoint);
-        MapElement_ActionPoint();
-        virtual ~MapElement_ActionPoint() override;
+        GENERATE_METADATA(CONSTRUCTOR, MapElement_ActionPoint)
+       
     };
 
     class MapElementData_ActionPoint  : public MapElementData {
     public:
-        GENERATE_METADATA(MapElementData_ActionPoint)
+        GENERATE_METADATA(NONE, MapElementData_ActionPoint)
         MapElementData_ActionPoint() { mMapElementClassName = MapElement_ActionPoint::getClassNameStatic(); }
     };
 }

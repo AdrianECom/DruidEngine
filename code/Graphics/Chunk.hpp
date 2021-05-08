@@ -12,19 +12,16 @@ template<class T> class List;
 class Chunk : public ObjectBase {
 private:
 
-	 List<Renderer*>* mRenderers;
-	 Vector3 mLeftTop;
-	 f32 mSize;
-	 bool mIsLoaded;
-	 Vector3 mCenter;
-	 f32 mRadius;
+	List<Renderer*>* mRenderers;
+	PRIVATE(LeftTop, NONE, Vector3)
+	PRIVATE(Size, NONE, f32)
+	PRIVATE(IsLoaded, NONE, bool)
+	PRIVATE(Center, NONE, Vector3)
+	PRIVATE(Radius, NONE, f32)
 
 public:
 
-	GENERATE_METADATA(Chunk);
-
-	Chunk();
-	virtual ~Chunk() override;;
+	GENERATE_METADATA(CONSTRUCTOR, Chunk)
 
 	GET(IsLoaded);
 	GET(Center);

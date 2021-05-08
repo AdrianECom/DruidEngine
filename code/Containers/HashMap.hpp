@@ -21,10 +21,10 @@ private:
 
 	public:
 
-		 K mKey;
-		 V mElement;
+		K mKey;
+		V mElement;
 
-		GENERATE_METADATA(Node);
+		GENERATE_METADATA(NONE, Node)
 
 		Node() : ObjectBase() {
 		};
@@ -52,16 +52,16 @@ private:
 
 	Array<List<HashMap<K,V>::Node*>*>* mArray;
 
-	 List<K>* mKeys;
-	 List<V>* mValues;
+	List<K>* mKeys;
+	List<V>* mValues;
 
 public:
 
-	GENERATE_METADATA(HashMap<K,V>);
+	GENERATE_METADATA(NONE, HashMap<K,V>)
 
 	/*!
-	 \brief Default Constructor.
-	 */
+	\brief Default Constructor.
+	*/
 	HashMap() : 	BaseContainer() {
 		mArray = nullptr;
 		mKeys = nullptr;
@@ -74,8 +74,8 @@ public:
 	}
 
 	/*!
-	 \brief Destructor.
-	 */
+	\brief Destructor.
+	*/
 	virtual ~HashMap() override {
 		HashMap<K, V>::clear();
 
@@ -86,8 +86,8 @@ public:
 	}
 
 	/*!
-	 \brief Constructor.
-	 */
+	\brief Constructor.
+	*/
 	void init() {
 		BaseContainer::init(0, sizeof(V), 1);
 		mArray = Memory::allocate<Array<List<HashMap<K,V>::Node*>*>>();

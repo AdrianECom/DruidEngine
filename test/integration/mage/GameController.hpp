@@ -24,32 +24,29 @@ template<class K, class V> class HashMap;
 class GameController : public Script {
 private:
 
-	GameObject* mPlayer;
-	PlayerScript* mPlayerScript;
-	GameObject* mCrossHair;
+PRIVATE(Player, NONE, GameObject*)
+PRIVATE(PlayerScript, NONE, PlayerScript*)
+PRIVATE(CrossHair, NONE, GameObject*)
 	// Array<GameObject*>* mRenderFloor;
 	List<GameObject*>* mRenderFloor;
-	u32 mRenderTilesAmount;
+	PRIVATE(RenderTilesAmount, NONE, u32)
 	List<GameObject*>* mRecycledTiles;
 	Array<GameObject*>* mPhysicFloor;
-	GameObject* mBackground;
-	f32 mRenderTileSize;
+PRIVATE(Background, NONE, GameObject*)
+	PRIVATE(RenderTileSize, NONE, f32)
 
 	Array<UIButton*>* mBookSelector;
-	UIButton* mSelectedBook;
+PRIVATE(SelectedBook, NONE, UIButton*)
 
-	UIText* mTextMana;
+PRIVATE(TextMana, NONE, UIText*)
 
-	f32 mEnemySpawnTimeCount;
-	f32 mEnemySpawnTime;
+	PRIVATE(EnemySpawnTimeCount, NONE, f32)
+	PRIVATE(EnemySpawnTime, NONE, f32)
 
 public:
 	static f32 smGlobalSpeed;
 
-	GENERATE_METADATA(GameController);
-
-	GameController();
-	virtual ~GameController() override;
+	GENERATE_METADATA(CONSTRUCTOR, GameController)
 
 	void createPlayer(f32 x, f32 y);
 	void createCrossHair();

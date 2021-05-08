@@ -11,13 +11,12 @@ private:
 	class UIDropdownEntry : public ObjectBase{
 	public:
 
-		GENERATE_METADATA(UIDropdownEntry);
+		GENERATE_METADATA(CONSTRUCTOR, UIDropdownEntry)
 
-	UIDropdownEntry();
-	virtual ~UIDropdownEntry() override;
+	
 
-		 String mLabel;
-		 UIElementCallback mCallback;
+		PUBLIC(Label, NONE, String)
+		PUBLIC(Callback, NONE, UIElementCallback)
 
 		UIDropdownEntry(String label, UIElementCallback callback);
 
@@ -41,10 +40,7 @@ private:
 
 public:
 
-	GENERATE_METADATA(UIDropdown);
-
-	UIDropdown();
-	virtual ~UIDropdown() override;
+	GENERATE_METADATA(CONSTRUCTOR, UIDropdown)
 
 	virtual void init() override;
 	virtual void onDestroy() override;

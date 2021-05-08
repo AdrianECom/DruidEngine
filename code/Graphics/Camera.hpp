@@ -15,29 +15,26 @@ class Camera : public Component {
 
 private:
 
-	 Matrix4 mProjectionMatrix;
-	 Matrix4 mViewTranslationMatrix;
-	 Matrix4 mInversePVMatrix; // used in screen to world calculations.
+	PRIVATE(ProjectionMatrix, NONE, Matrix4)
+	PRIVATE(ViewTranslationMatrix, NONE, Matrix4)
+	PRIVATE(InversePVMatrix, NONE, Matrix4) // used in screen to world calculations.
 
-	 f32 mLeft;
-	 f32 mRight;
-	 f32 mBottom;
-	 f32 mTop;
-	 f32 mNear;
-	 f32 mFar;
+	PRIVATE(Left, NONE, f32)
+	PRIVATE(Right, NONE, f32)
+	PRIVATE(Bottom, NONE, f32)
+	PRIVATE(Top, NONE, f32)
+	PRIVATE(Near, NONE, f32)
+	PRIVATE(Far, NONE, f32)
 	
-	 f32 mFov;
-	 bool mIsOrtho;
+	PRIVATE(Fov, NONE, f32)
+	PRIVATE(IsOrtho, NONE, bool)
 
-	 Frustum* mFrustum;
-	 f32 mZoom;
+PRIVATE(Frustum, NONE, Frustum*)
+	PRIVATE(Zoom, NONE, f32)
 
 public:
 
-	GENERATE_METADATA(Camera);
-
-	Camera();
-	virtual ~Camera() override;;
+	GENERATE_METADATA(CONSTRUCTOR, Camera)
 
 	GET(Frustum);
 	GET(Zoom);

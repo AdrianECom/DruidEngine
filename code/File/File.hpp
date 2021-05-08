@@ -14,10 +14,7 @@ class File : public ObjectBase {
 
 public:
 
-	GENERATE_METADATA(File);
-
-	File();
-	virtual ~File() override;
+	GENERATE_METADATA(CONSTRUCTOR, File)
 
 	static void init();
 	static void readFile(const String &path, std::function<void(std::ifstream &file)> callback);

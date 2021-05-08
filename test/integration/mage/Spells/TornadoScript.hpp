@@ -11,18 +11,15 @@ class Renderer;
 class TornadoScript : public Script {
 
 private:
-	Renderer* mRenderer;
-	Element mElement;
+PRIVATE(Renderer, NONE, Renderer*)
+	PRIVATE(Element, NONE, Element)
 
-	f32 mDurationTime;
-	f32 mDurationTimeCounter;
+	PRIVATE(DurationTime, NONE, f32)
+	PRIVATE(DurationTimeCounter, NONE, f32)
 
 public:
 
-	GENERATE_METADATA(TornadoScript);
-
-	TornadoScript();
-	virtual ~TornadoScript() override;
+	GENERATE_METADATA(CONSTRUCTOR, TornadoScript)
 
 	void init() override;
 	void firstStep() override;

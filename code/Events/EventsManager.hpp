@@ -26,7 +26,7 @@ private:
 	using EventReceiversMap = HashMap<ClassId, ReceiverFunctorsMap*>;
 	using OwnersReceiversMap = HashMap<ObjectBase*, EventReceiversMap*>;
 
-	OwnersReceiversMap* mOwnersReceiversMap;
+PRIVATE(OwnersReceiversMap, NONE, OwnersReceiversMap*)
 
 	void removeMapContent();
 
@@ -34,10 +34,7 @@ private:
 	void unsubscribe(ClassId eventClassId, ObjectBase* eventOwner, ObjectBase* eventReceiver);
 
 public:
-	GENERATE_METADATA(EventsManager);
-
-	EventsManager();
-	virtual ~EventsManager() override;
+	GENERATE_METADATA(CONSTRUCTOR, EventsManager)
 
 	void init();
 	void terminate();

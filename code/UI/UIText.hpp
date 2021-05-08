@@ -8,16 +8,13 @@ namespace DE {
 
 class UIText : public UIElement {
 
-	u32 mLayer;
-	Vector2 mSize;
-	String mString;
+	PRIVATE(Layer, NONE, u32)
+	PRIVATE(Size, NONE, Vector2)
+	PRIVATE(String, NONE, String)
 
 public:
 
-	GENERATE_METADATA(UIText);
-
-	UIText();
-	virtual ~UIText() override;
+	GENERATE_METADATA(CONSTRUCTOR, UIText)
 
 	virtual void init() override;
 	virtual void onDestroy() override;

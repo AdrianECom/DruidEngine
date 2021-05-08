@@ -9,14 +9,11 @@ class GameObject;
 class Script : public Component {
 private:
 
-	 bool mFirstStepDone;
+	PRIVATE(FirstStepDone, NONE, bool)
 
 public:
 
-	GENERATE_METADATA(Script);
-
-	Script();
-	virtual ~Script() override;;
+	GENERATE_METADATA(CONSTRUCTOR, Script)
 
 	GET(FirstStepDone);
 

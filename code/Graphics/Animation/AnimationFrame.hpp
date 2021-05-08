@@ -9,16 +9,13 @@ namespace DE {
 class AnimationFrame : public ObjectBase {
 private:
 
-	 Vector2 mPosition;
-	 f32 mWidth;
-	 f32 mHeight;
+	PRIVATE(Position, NONE, Vector2)
+	PRIVATE(Width, NONE, f32)
+	PRIVATE(Height, NONE, f32)
 
 public:
 
-	GENERATE_METADATA(AnimationFrame);
-
-	AnimationFrame();
-	virtual ~AnimationFrame() override;;
+	GENERATE_METADATA(CONSTRUCTOR, AnimationFrame)
 
 	GET(Position);
 	GET(Width);

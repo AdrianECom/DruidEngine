@@ -16,7 +16,7 @@ class Iterator : public ObjectBase {
 
 public:
 
-	GENERATE_METADATA(Iterator);
+	GENERATE_METADATA(NONE, Iterator)
 
 	Iterator() : ObjectBase() { };
 
@@ -44,11 +44,11 @@ private:
 	class Node : public ObjectBase {
 
 	public:
-		 List<T>::Node* mNext;
-		 List<T>::Node* mPrev;
-		 T mElement;
+		List<T>::Node* mNext;
+		List<T>::Node* mPrev;
+		T mElement;
 
-		GENERATE_METADATA(Node);
+		GENERATE_METADATA(NONE, Node)
 
 		Node() : ObjectBase() {
 		}
@@ -77,8 +77,8 @@ private:
 
 	static const u32 smNodeSize = sizeof(Node);
 
-	 List<T>::Node* mFirst;
-	 List<T>::Node* mLast;
+	List<T>::Node* mFirst;
+	List<T>::Node* mLast;
 
 	List<T>::Node* newNode() {
 		List<T>::Node* node = reinterpret_cast<List<T>::Node*>(BaseContainer::mAllocator->allocate(sizeof(Node)));
@@ -130,8 +130,8 @@ public:
 
 	private:
 
-		 List<T>::Node* mNode;
-		 bool mReverse;
+		List<T>::Node* mNode;
+		bool mReverse;
 		
 		void init(Node *start) {
 			mNode = start;
@@ -140,7 +140,7 @@ public:
 		
 	public:
 
-		GENERATE_METADATA(ListIterator);
+		GENERATE_METADATA(NONE, ListIterator)
 
 		ListIterator() : 		Iterator() {
 			mNode = nullptr;
@@ -323,7 +323,7 @@ private:
 	
 public:
 
-	GENERATE_METADATA(List<T>);
+	GENERATE_METADATA(NONE, List<T>)
 
 	List() : 	SequentialContainer<T>() {
 		mFirst = nullptr;
@@ -336,9 +336,9 @@ public:
 	}
 
 	/*!
-	 \brief Copy Constructor.
-	 \param other Other List.
-	 */
+	\brief Copy Constructor.
+	\param other Other List.
+	*/
 	void init(const List &other) {
 		this->_init(other.mElementSize);
 
@@ -352,8 +352,8 @@ public:
 	}
 
 	/*!
-	 \brief Constructor. Empty List.
-	 */
+	\brief Constructor. Empty List.
+	*/
 	void init() {
 		List::_init(sizeof(T));
 	}
@@ -659,8 +659,8 @@ public:
 	}
 
 	/*!
-	 \brief Finds with default comparator.
-	 */
+	\brief Finds with default comparator.
+	*/
 	ListIterator find(const T element) const {
 		//return find(element, defaultComparator);
 
@@ -679,8 +679,8 @@ public:
 	}
 
 	/*!
-	 \brief Finds with custom comparator.
-	 */
+	\brief Finds with custom comparator.
+	*/
 	ListIterator find(const T element, u8 (*comparator)(const T &a, const T &b)) const {
 		ListIterator selectedIt;
 		bool found = false;
@@ -697,16 +697,16 @@ public:
 	}
 
 	/*!
-	 \brief Sorts with default comparator.
-	 */
+	\brief Sorts with default comparator.
+	*/
 	void sort() {
 		sort(defaultComparator);
 	}
 
 	/*!
-	 \brief Sorts custom comparator.
-	 \param comparator Function with this form: u8 comparator(const T& a, const T& b).
-	 */
+	\brief Sorts custom comparator.
+	\param comparator Function with this form: u8 comparator(const T& a, const T& b).
+	*/
 	void sort(u8 (*comparator)(T a, T b)) {
 		qsort(comparator, 0, this->getLength() - 1);
 	}

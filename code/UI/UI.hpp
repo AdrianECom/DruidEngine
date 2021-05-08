@@ -22,13 +22,10 @@ template<class K, class V> class HashMap;
 
 class UIGroup : public ObjectBase {
 public:
-	GENERATE_METADATA(UIGroup);
+	GENERATE_METADATA(CONSTRUCTOR, UIGroup)
 
-	UIGroup();
-	virtual ~UIGroup() override;
-
-	String mName;
-	bool mVisible;
+	PUBLIC(Name, NONE, String)
+	PUBLIC(Visible, NONE, bool)
 	List<UIElement*>* mUIElements;
 
 	void init();
@@ -42,23 +39,20 @@ private:
 
 	HashMap<c8, Vector2>* mCharMap;
 
-	Vector2 mFontTilesCount;
-	Vector2 mFontTileTextureSize;
+	PRIVATE(FontTilesCount, NONE, Vector2)
+	PRIVATE(FontTileTextureSize, NONE, Vector2)
 
-	Material* mFontMaterial;
+PRIVATE(FontMaterial, NONE, Material*)
 
 	Vector2 mDefaultFontSize = Vector2(0.04f / 2.0f, 0.04f);
 
-	UIBuilder* mUIBuilder;
+PRIVATE(UIBuilder, NONE, UIBuilder*)
 
 	UIElement* mFocusedElement = nullptr;
 
 public:
 
-	GENERATE_METADATA(UI);
-
-	UI();
-	virtual ~UI() override;
+	GENERATE_METADATA(CONSTRUCTOR, UI)
 
 	UIBuilder* getBuilder();
 

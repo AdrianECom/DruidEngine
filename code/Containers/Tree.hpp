@@ -18,11 +18,11 @@ private:
 	class Node : public ObjectBase {
 
 	public:
-		 Node* mParent;
-		 T mElement;
-		 Array<Node*>* mChildren;
+PRIVATE(Parent, NONE, Node*)
+		T mElement;
+		Array<Node*>* mChildren;
 
-		GENERATE_METADATA(Node);
+		GENERATE_METADATA(CONSTRUCTOR, Node)
 
 		Node() : ObjectBase() {
 			mChildren = nullptr;
@@ -104,12 +104,12 @@ private:
 			return find(element, child);
 	};
 
-	 Node* mRoot;
+PRIVATE(Root, NONE, Node*)
 	static const u32 smChildrenCount = 2;
 
 public:
 
-	GENERATE_METADATA(Tree<T>);
+	GENERATE_METADATA(NONE, Tree<T>)
 
 	Tree() : BaseContainer() {
 		mRoot = nullptr;
@@ -120,8 +120,8 @@ public:
 	}
 
 	/*!
-	 \brief Constructor.
-	 */
+	\brief Constructor.
+	*/
 	void init() {
 		BaseContainer::init(0, sizeof(T), 1);
 		mRoot = nullptr;

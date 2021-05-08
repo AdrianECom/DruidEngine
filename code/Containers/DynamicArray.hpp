@@ -51,19 +51,19 @@ private:
 	
 public:
 
-	GENERATE_METADATA(DynamicArray<T>);
+	GENERATE_METADATA(NONE, DynamicArray<T>)
 
 	/*!
-	 \brief Default Constructor.
-	 */
+	\brief Default Constructor.
+	*/
 	DynamicArray() : 	SequentialContainer<T>() {
 		mArrays = nullptr;
 		mCache = nullptr;
 	}
 
 	/*!
-	 \brief Destructor.
-	 */
+	\brief Destructor.
+	*/
 	virtual ~DynamicArray() override {
 		if (mArrays != nullptr) {
 
@@ -76,9 +76,9 @@ public:
 	}
 
 	/*!
-	 \brief Copy Constructor.
-	 \param other Other DynamicArray.
-	 */
+	\brief Copy Constructor.
+	\param other Other DynamicArray.
+	*/
 	void init(const DynamicArray<T> &other) {
 		BaseContainer::init(other.BaseContainer::mLength, other.mElementSize, other.BaseContainer::mAlignment);
 		mArrays = Memory::allocate<List<Array<T>*> >();
@@ -94,9 +94,9 @@ public:
 	}
 
 	/*!
-	 \brief Copy Constructor.
-	 \param other Other Array.
-	 */
+	\brief Copy Constructor.
+	\param other Other Array.
+	*/
 	void init(const Array<T> &other) {
 		u32 otherLength = other.getLength();
 		u32 otherOffset = 0;
@@ -117,20 +117,20 @@ public:
 	}
 
 	/*!
-	 \brief Constructor from raw array.
-	 \param rawArray The raw array.
-	 \param length The length of the raw array.
-	 */
+	\brief Constructor from raw array.
+	\param rawArray The raw array.
+	\param length The length of the raw array.
+	*/
 	void init(const T rawArray[], u32 length) override {
 		DynamicArray::init(rawArray, length, 1);
 	}
 
 	/*!
-	 \brief Constructor from raw array. Aligned.
-	 \param rawArray The raw array.
-	 \param length The length of the raw array.
-	 \param alignment Bytes alignment.
-	 */
+	\brief Constructor from raw array. Aligned.
+	\param rawArray The raw array.
+	\param length The length of the raw array.
+	\param alignment Bytes alignment.
+	*/
 	void init(const T rawArray[], u32 length, u32 alignment) override {
 		BaseContainer::setAllocator(&Memory::getGlobal());
 		Array<T>* array = Memory::allocate<Array<T>>(alignment);
@@ -139,25 +139,25 @@ public:
 	}
 
 	/*!
-	 \brief Constructor.
-	 */
+	\brief Constructor.
+	*/
 	void init() {
 		DynamicArray::init(0);
 	}
 
 	/*!
-	 \brief Constructor.
-	 \param length Length of the array.
-	 */
+	\brief Constructor.
+	\param length Length of the array.
+	*/
 	void init(u32 length) {
 		DynamicArray::init(length, 1);
 	}
 
 	/*!
-	 \brief Constructor. Aligned.
-	 \param length Length of the array.
-	 \param alignment Bytes alignment.
-	 */
+	\brief Constructor. Aligned.
+	\param length Length of the array.
+	\param alignment Bytes alignment.
+	*/
 	void init(u32 length, u32 alignment) {
 		BaseContainer::init(length, sizeof(T), alignment);
 
@@ -178,9 +178,9 @@ public:
 	}
 
 	/*!
-	 \brief Fill the array with the same element.
-	 \param element The element.
-	 */
+	\brief Fill the array with the same element.
+	\param element The element.
+	*/
 	void fill(const T element) {
 
 		FOR_LIST(it, mArrays)
@@ -191,18 +191,18 @@ public:
 	}
 
 	/*!
-	 \param index The index.
-	 \return Element at index.
-	 */
+	\param index The index.
+	\return Element at index.
+	*/
 	T get(u32 index) const {
 		return DynamicArray::randomAccessOperator(index);
 	}
 
 	/*!
-	 \brief Sets element at index.
-	 \param index The index.
-	 \param element The element.
-	 */
+	\brief Sets element at index.
+	\param index The index.
+	\param element The element.
+	*/
 	void set(u32 index, const T element) {
 		// resize
 		if (index >= mArrays->getLength() * smMinSize) {

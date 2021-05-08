@@ -12,37 +12,28 @@ private:
 
 	class State {
 	public:
-		 Vector3 mPosition;
-		 Vector3 mLinear;
-		 Vector3 mForceAccumulator;
-		 f32 mMass;
-		 bool mSimulate;
+		PUBLIC(Position, NONE, Vector3)
+		PUBLIC(Linear, NONE, Vector3)
+		PUBLIC(ForceAccumulator, NONE, Vector3)
+		PUBLIC(Mass, NONE, f32)
+		PUBLIC(Simulate, NONE, bool)
 
 		State();
 	};
 
-	 State mState;
-	 Vector3 mLastCollisionPosition;
-	 Vector3 mAntiPenetrationForce;
+	PRIVATE(State, NONE, State)
+	PRIVATE(LastCollisionPosition, NONE, Vector3)
+	PRIVATE(AntiPenetrationForce, NONE, Vector3)
 
-	 Vector3 mForceAccumulator;
-	 f32 mMass;
-	 Vector3 mLinear;
-	 bool mSimulate;
-	 Collider* mCollider;
+	PRIVATE(ForceAccumulator, GET, Vector3)
+	PRIVATE(Mass, GET_SET, f32)
+	PRIVATE(Linear, GET_SET, Vector3)
+	PRIVATE(Simulate, GET_SET, bool)
+	PRIVATE(Collider, GET_SET, Collider*)
 
 public:
 
-	GENERATE_METADATA(RigidBody);
-
-	RigidBody();
-	virtual ~RigidBody() override;;
-
-	GET(ForceAccumulator);
-	GET_SET(Mass);
-	GET_SET(Linear);
-	GET_SET(Simulate);
-	GET_SET(Collider);
+	GENERATE_METADATA(CONSTRUCTOR, RigidBody)
 
 	void init() override;
 

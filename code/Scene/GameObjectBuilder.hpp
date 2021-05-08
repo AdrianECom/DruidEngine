@@ -13,14 +13,11 @@ class GameObjectBuilder: public ObjectBase, public Singleton<GameObjectBuilder> 
 
 private:
 
-	 GameObject* mGameObject;
+PRIVATE(GameObject, NONE, GameObject*)
 
 public:
 
-	GENERATE_METADATA(GameObjectBuilder);
-
-	GameObjectBuilder();
-	virtual ~GameObjectBuilder() override;;
+	GENERATE_METADATA(CONSTRUCTOR, GameObjectBuilder)
 
 	GET(GameObject);
 
